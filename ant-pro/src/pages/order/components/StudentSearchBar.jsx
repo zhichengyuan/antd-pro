@@ -65,10 +65,10 @@ class StudentSearchBar extends Component {
     }
 }
 
-export default connect(({ login, loading }) => {
-    console.log('login',login)
+export default connect(({ student, loading }) => {
+    console.log('student',student)
     return {
-      userLogin: login,
-      submitting: loading.effects['login/login'],
+        defaultValue: student.condition,
+    //   submitting: loading.effects['login/login'],
     }
   })(StudentSearchBar);
