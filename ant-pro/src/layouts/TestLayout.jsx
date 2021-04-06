@@ -13,6 +13,7 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { getMatchMenu } from '@umijs/route-utils';
 import logo from '../assets/logo.svg';
+import { PageContainer } from '@ant-design/pro-layout';
 const noMatch = (
   <Result
     status={403}
@@ -178,7 +179,15 @@ const BasicLayout = (props) => {
         }}
       >
         <Authorized authority={authorized.authority} noMatch={noMatch}>
-          {children}
+            <PageContainer
+                header={{
+                    title:''
+                }}
+            >
+
+            {children}
+            </PageContainer>
+          
         </Authorized>
       </ProLayout>
       <SettingDrawer

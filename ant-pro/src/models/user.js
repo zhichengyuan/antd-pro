@@ -23,6 +23,7 @@ const UserModel = {
   },
   reducers: {
     saveCurrentUser(state, action) {
+      console.log('action',action)
       return { ...state, currentUser: action.payload || {} };
     },
 

@@ -1,6 +1,7 @@
 /** Request 网络请求工具 更详细的 api 文档: https://github.com/umijs/umi-request */
 import { extend } from 'umi-request';
 import { notification } from 'antd';
+// import { options } from 'numeral';
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -44,6 +45,20 @@ const errorHandler = (error) => {
 const request = extend({
   errorHandler,
   // 默认错误处理
-  credentials: 'include', // 默认请求是否带上cookie
+  // credentials: 'include', // 默认请求是否带上cookie
+  // prefix: 'https://www.benelife.ru/wl', // prefix
 });
+const baseUrl = 'https://www.benelife.ru/wl'
+request.interceptors.request.use((url,options) => {
+  if(localStorage.getItem('token')) {
+    options.headers.token = localStorage.getItem('token');
+    options.headers.sid = 'notneed';
+  }
+  if(url.startsWith('/server')) {
+    url = baseUrl + url.slice(7);
+  }
+  // url = baseUrl + url;
+  return {url, options}
+  
+})
 export default request;

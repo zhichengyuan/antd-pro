@@ -265,6 +265,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
           />
         </FormItem>
         <InputGroup compact>
+        {/* <FormItem> */}
           <Select
             size="large"
             value={prefix}
@@ -276,6 +277,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
             <Option value="86">+86</Option>
             <Option value="87">+87</Option>
           </Select>
+          {/* </FormItem> */}
           <FormItem
             style={{
               width: '80%',

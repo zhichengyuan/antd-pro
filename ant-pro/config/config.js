@@ -5,6 +5,7 @@ import proxy from './proxy';
 const { REACT_APP_ENV } = process.env;
 export default defineConfig({
   hash: true,
+  
   antd: {},
   dva: {
     hmr: true,
@@ -62,21 +63,47 @@ export default defineConfig({
           ],
         },
         {
-          path:'/new1',
-          component: '../layouts/BasicLayout',
+          path:'/home',
+          component: '../layouts/TestLayout',
           Routes: ['src/pages/Authorized'],
           authority: ['admin', 'user'],
           routes: [
             {
-              path: '/',
-              redirect: '/text',
+              path: '/home  ',
+              redirect: '/home/company',
             },
             {
-                path: '/text',
-                name: 'text',
+                path: '/home/company',
+                name: 'company',
                 icon: 'dashboard',
-                component: './home',
-            }
+                component: './company',
+            },
+            {
+                path: '/home/system/staff',
+                name: 'staff',
+                icon: 'dashboard',
+                component: './system',
+            },
+            {
+                path: '/home/order',
+                icon: 'dashboard',
+                name:'order',
+                // component: '../layouts/Test',
+                routes:[
+                  {
+                    path: '/home/order/orderlist',
+                    name: 'orderlist',
+                    icon: 'dashboard',
+                    component: './order/orderlist',
+                  },
+                  {
+                    path: '/home/order/history',
+                    name: 'history',
+                    icon: 'dashboard',
+                    component: './order/history',
+                  },
+                ]
+            },
           ]
         },
         {
@@ -90,10 +117,11 @@ export default defineConfig({
               redirect: '/dashboard/analysis',
             },
             {
-              path:'new',
+              path:'/new',
               name:'new',
               icon: 'dashboard',
               component: './home',
+              authority: ['admin','user'],
             },
             {
               path: '/dashboard',
@@ -109,6 +137,7 @@ export default defineConfig({
                   name: 'home',
                   icon: 'dashboard',
                   component: './home',
+                  authority: [ 'user'],
                 },
                 {
                   name: 'analysis',
@@ -139,6 +168,13 @@ export default defineConfig({
                 {
                   path: '/',
                   redirect: '/form/basic-form',
+                },
+                {
+                  path:'/form/new1',
+                  name:'new1',
+                  icon: 'smile',
+                  component: './home',
+                  // hideInBreadcrumb:true,
                 },
                 {
                   name: 'basic-form',
@@ -353,6 +389,7 @@ export default defineConfig({
         
       ],
     },
+    
     
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn

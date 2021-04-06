@@ -1,8 +1,16 @@
 export default {
-  'menu.welcome': '欢迎',
-  'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.new': '新的页面',
+  'menu.form.new1': '新的页面1',
+  'menu.company':'公司',
+  'menu.staff':'员工管理',
+  'menu.order':'运单管理',
+  'menu.order.orderlist':'运单列表',
+  'menu.order.history':'历史运单',
+
+
+  'menu.welcome': '欢迎',
+  'menu.more-blocks': '更多区块',
   'menu.admin': '管理页',
   'menu.admin.sub-page': '二级管理页',
   'menu.login': '登录',
