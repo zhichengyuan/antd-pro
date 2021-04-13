@@ -48,14 +48,19 @@ const request = extend({
   // credentials: 'include', // 默认请求是否带上cookie
   // prefix: 'https://www.benelife.ru/wl', // prefix
 });
-const baseUrl = 'https://www.benelife.ru/wl'
+const baseUrl = 'https://www.benelife.ru/wl';
+const baseUrl1 = 'http://api.duyiedu.com';
 request.interceptors.request.use((url,options) => {
-  if(localStorage.getItem('token')) {
-    options.headers.token = localStorage.getItem('token');
-    options.headers.sid = 'notneed';
-  }
+  
   if(url.startsWith('/server')) {
+    if(localStorage.getItem('token')) {
+      options.headers.token = localStorage.getItem('token');
+      options.headers.sid = 'notneed';
+    }
     url = baseUrl + url.slice(7);
+  }
+  if(url.startsWith('/student')) {
+    url = baseUrl1 + url.slice(8);
   }
   // url = baseUrl + url;
   return {url, options}

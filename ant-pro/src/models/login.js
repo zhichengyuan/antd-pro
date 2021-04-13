@@ -11,12 +11,12 @@ const Model = {
   },
   effects: {
     *login({ payload }, { call, put }) {
-      console.log('测试',payload);
+      // console.log('测试',payload);
       // return;
       const response = yield call(fakeAccountLogin, payload);
       localStorage.setItem('token',response.data.token);
       const res = yield call(getUserInfo,response.data.token);
-      console.log(response);
+      // console.log(response);
       // console.log(res);
       if(response.code === 0) {
         response.status = 'ok';

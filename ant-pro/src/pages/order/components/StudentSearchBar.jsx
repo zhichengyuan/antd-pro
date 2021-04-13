@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Row,Col,Input,Radio ,Button} from 'antd'
-import { connect } from 'umi';
 const { Search } = Input;
-class StudentSearchBar extends Component {
+export default class StudentSearchBar extends Component {
     
     constructor(props) {
         super(props);
@@ -25,12 +24,6 @@ class StudentSearchBar extends Component {
         }
     }
     render() {
-        console.log(this.props)
-        // return (
-        //     <div>
-        //         测试
-        //     </div>
-        // )
         return (
             <div style={{
                 marginBottom:'10px'
@@ -65,10 +58,3 @@ class StudentSearchBar extends Component {
     }
 }
 
-export default connect(({ student, loading }) => {
-    console.log('student',student)
-    return {
-        defaultValue: student.condition,
-    //   submitting: loading.effects['login/login'],
-    }
-  })(StudentSearchBar);

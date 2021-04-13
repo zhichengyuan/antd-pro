@@ -139,7 +139,7 @@ const BasicLayout = (props) => {
           return <Link to={menuItemProps.path}>{defaultDom}</Link>;
         }}
         breadcrumbRender={(routers = []) => {
-          console.log('sdsd',routers);
+          // console.log('sdsd',routers);
           const arr = [
           
             {
@@ -150,7 +150,7 @@ const BasicLayout = (props) => {
             },
             ...routers,
           ]
-          console.log('arr',arr)
+          // console.log('arr',arr)
           return arr;
         }}
         itemRender={(route, params, routes, paths) => {
@@ -190,7 +190,7 @@ const BasicLayout = (props) => {
           
         </Authorized>
       </ProLayout>
-      <SettingDrawer
+      {/* <SettingDrawer
         settings={settings}
         onSettingChange={(config) =>
           dispatch({
@@ -198,7 +198,7 @@ const BasicLayout = (props) => {
             payload: config,
           })
         }
-      />
+      /> */}
     </>
   );
 };

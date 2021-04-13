@@ -8,3 +8,12 @@ export async function queryCurrent() {
 export async function queryNotices() {
   return request('/api/notices');
 }
+
+export async function queryUserList(data) {
+  console.log(data);
+  return await request({
+      url: '/server/user/list',
+      method: 'post',
+      data
+  })
+}

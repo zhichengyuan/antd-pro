@@ -25,7 +25,7 @@ class AvatarDropdown extends React.Component {
   };
 
   render() {
-    console.log('用户',this.props)
+    // console.log('用户',this.props)
     const {
       currentUser = {
         avatar: '',

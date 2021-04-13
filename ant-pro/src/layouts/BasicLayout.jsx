@@ -138,7 +138,7 @@ const BasicLayout = (props) => {
           return <Link to={menuItemProps.path}>{defaultDom}</Link>;
         }}
         breadcrumbRender={(routers = []) => {
-          console.log('sdsd',routers);
+          // console.log('sdsd',routers);
           const arr = [
           
             {
@@ -149,7 +149,7 @@ const BasicLayout = (props) => {
             },
             ...routers,
           ]
-          console.log('arr',arr)
+          // console.log('arr',arr)
           return arr;
         }}
         itemRender={(route, params, routes, paths) => {
