@@ -4,8 +4,6 @@ import {connect} from 'dva'
 const { Option } = Select;
 
  function StaffSearch(props) {
-    
-
     function handleChange(value) {
         console.log(`selected ${value}`);
         value = value || "";
@@ -16,9 +14,8 @@ const { Option } = Select;
             marginBottom:'10px'
         }}>
             <Row gutter={10} type="flex" justify="start">
-                
                 <Col>
-                <Select allowClear placeholder="用户状态" style={{ width: 120 }} onChange={handleChange}>
+                <Select defaultValue={props.status} allowClear placeholder="用户状态" style={{ width: 120 }} onChange={handleChange}>
                     <Option value="active">激活</Option>
                     <Option value="disactive">禁用</Option>
                 </Select>
@@ -29,14 +26,16 @@ const { Option } = Select;
                     })
                 }}></input> */}
                 
-                {/* <Button type="primary" onClick={this.handleSearch}>查询</Button> */}
+                <Button type="primary" onClick={() => {
+                    props.addStaff && props.addStaff(true)
+                }}>新增</Button>
             </Row>
         </div>
     )
 }
 
 StaffSearch.defaultProps = {
-    status:''
+    // status:''
 }
 
 const mapStateToProps = state => ({
@@ -56,6 +55,14 @@ const mapDispatchToProps = dispatch => ({
         // 重新查询
         dispatch({
             type:'staff/fetchUserList',
+        })
+    },
+    addStaff(isShow){
+        // console.log(newObj)
+        //重新设置条件
+        dispatch({
+            type:'staff/setChangeIsShow',
+            payload:isShow
         })
     }
 })

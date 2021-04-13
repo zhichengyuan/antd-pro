@@ -12,12 +12,22 @@ const staffModel = {
         result:{
             total:0,//总数据量
             datas:[]//学生数据
+        },
+        staffForm:{
+            isShow:false
+        }
+        
+    },
+    subscriptions:{
+        listenUrl({dispatch}) {
+            dispatch({
+                type:'fetchUserList'
+            })
+            
         }
     },
-    
     reducers:{
         changeCondition(state,{payload}) {
-            console.log(payload);
             return {
                 ...state,
                 req:{
@@ -30,6 +40,24 @@ const staffModel = {
                 }
             }
         },
+        changeReqPage(state,{payload}){
+            return {
+                ...state,
+                paging:{
+                    ...state.paging,
+                    page:payload.page
+                }
+            }
+        },
+        setChangeIsShow(state,{payload}) {
+            return {
+                ...state,
+                staffForm:{
+                    ...state.staffForm,
+                    isShow:payload
+                }
+            }
+        },
         setResult(state,{payload}) {
             return {
                 ...state,
@@ -38,21 +66,29 @@ const staffModel = {
         }
     },
     effects:{
-        // *setCondition(action,{put,select}) {
-        //     //改变地址
-        //     let condition = yield select(state => state.student.condition);
-        //     condition = {
-        //         ...condition,
-        //         ...action.payload
-        //     }
-        //      yield put(routerRedux.push(`?key=${condition.key}&page=${condition.page}&limit=${condition.limit}&sex=${condition.sex}`))
-        // },
+        *setReqPage(action,{put,select}) {
+            //改变地址
+            let paging = yield select(state => state.staff.paging);
+            console.log(action,paging);
+            yield put({
+                type:'changeReqPage',
+                payload:{
+                    page:action.payload.page
+                }
+            })
+            yield put({
+                type:'fetchUserList'
+            })
+        },
         /**
          * 根据当前的条件，搜索学生
          */
         *fetchUserList(action,{put,select,call}) {
             //拿到当前的搜索条件 
             const req = yield select(state => state.staff.req);
+            if(req.status == '') {
+                delete req.status
+            }
             const paging = yield select(state => state.staff.paging)
             let data = {
                 req,
@@ -60,15 +96,14 @@ const staffModel = {
             }
             // const result = yield call(searchStudents,condition);
             const result = yield call(queryUserList,data);
-            console.log(result);
-            // console.log('真结果',result)
-            // yield put({
-            //     type:'setResult',
-            //     payload:{
-            //         total:result.cont,
-            //         datas:result.datas
-            //     }
-            // })
+            
+            yield put({
+                type:'setResult',
+                payload:{
+                    total:result.data.total,
+                    datas:result.data.items
+                }
+            })
         }
     }
 }

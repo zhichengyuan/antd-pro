@@ -11,9 +11,9 @@ export async function queryNotices() {
 
 export async function queryUserList(data) {
   console.log(data);
-  return await request({
-      url: '/server/user/list',
-      method: 'post',
-      data
-  })
+  return await request('/server/user/list',{
+    method: 'POST',
+    data
+})
+ 
 }

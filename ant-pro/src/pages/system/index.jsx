@@ -1,11 +1,16 @@
 import React from 'react'
 import StaffSearch from './components/staffSearch'
+import StaffTable from './components/StaffTable'
+import StaffPage from './components/staffPage'
+import StaffForm from './components/StaffForm'
 
 export default function index() {
     return (
         <div>
-           <h1>员工管理</h1> 
            <StaffSearch/>
+           <StaffTable/>
+           <StaffPage/>
+           <StaffForm/>
         </div>
     )
 }
