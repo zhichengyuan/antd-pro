@@ -6,7 +6,28 @@ import { Table,Typography,Button } from 'antd';
 const { Text } = Typography;
 
 function StaffTable(props) {
-    console.log(props);
+    // console.log(props);
+    const contentText = (roles) => {
+        // console.log(roles);
+        switch (roles) {
+            case roles.indexOf('admin') != -1:
+                return '管理员';
+            case roles.indexOf('CKY') != -1:
+                return '仓库一';
+            case roles.indexOf('ZZC') != -1:
+                return '中转仓库';
+            case roles.indexOf('QG') != -1:
+                return '仓库清关';
+            case roles.indexOf('XLFP') != -1:
+                return '线路分配';
+            case roles.indexOf('ZT') != -1:
+                return '自提点';
+            case roles.indexOf('t') != -1:
+                return '物流管理员';
+            default:
+                return '员工'
+        }
+    }
     const columns = [
         {
             title:'昵称',
@@ -25,7 +46,11 @@ function StaffTable(props) {
         },
         {
             title:'角色',
-            dataIndex:'address'
+            dataIndex:'roles',
+            render:roles => (
+                <Text mark>{contentText(roles)}</Text>
+            )
+
         },
         {
             title:'是否启用',
@@ -35,15 +60,18 @@ function StaffTable(props) {
             title:'操作',
             dataIndex:'address'
         },
-        // {
-        //     title:'详情',
-        //     dataIndex:'sNo',
-        //     render(sNo) {
-        //         return <Button type='link' onClick={() => {
-        //             props.history.push(`/student/${sNo}`)
-        //         }}>详情</Button>
-        //     }
-        // }
+        {
+            title:'详情',
+            dataIndex:'nickname',
+            render(nickname,record) {
+                // console.log(record);
+                return <Button onClick={() => {
+                    // props.history.push(`/student/${sNo}`)
+                    // console.log(record);
+                    props.onChange && props.onChange(record)
+                }}>详情</Button>
+            }
+        }
     ]
     
     return (
@@ -68,5 +96,19 @@ const mapStateToProps = state => ({
     staffs:state.staff.result.datas,
     loading:state.loading.effects['staff/fetchUserList']
 })
-export default connect(mapStateToProps)(StaffTable)
+const mapDispatchToProps = dispatch => ({
+    onChange(item){
+        // console.log(item);
+        let payload = {
+            isShow:true,
+            editObj:item
+        }
+        //重新设置条件
+        dispatch({
+            type:'staff/setChangeIsShow',
+            payload:payload
+        })
+    }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(StaffTable)
 // export default withRouter()

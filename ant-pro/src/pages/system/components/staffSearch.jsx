@@ -60,9 +60,13 @@ const mapDispatchToProps = dispatch => ({
     addStaff(isShow){
         // console.log(newObj)
         //重新设置条件
+        let payload= {
+            isShow,
+            editObj:''
+        }
         dispatch({
             type:'staff/setChangeIsShow',
-            payload:isShow
+            payload:payload
         })
     }
 })

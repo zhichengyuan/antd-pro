@@ -5,8 +5,9 @@ import { getAuthority } from './authority';
 /* eslint-disable import/no-mutable-exports */
 
 let Authorized = RenderAuthorize(getAuthority()); // Reload the rights component
-
+console.log(getAuthority());
 const reloadAuthorized = () => {
+  // console.log(getAuthority());
   Authorized = RenderAuthorize(getAuthority());
 };
 /** Hard code block need it。 */

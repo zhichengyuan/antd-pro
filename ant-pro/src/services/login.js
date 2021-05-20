@@ -4,10 +4,10 @@ export async function fakeAccountLogin({password,userName}) {
   return await request('/server/user/admin/login', {
     method: 'POST',
     data: {
-      password: "Hfhj@2020",
-      username: "admin"
-      // username:userName,
-      // password:password
+      // password: "Hfhj@2020",
+      // username: "admin"
+      username:userName,
+      password:password
     },
   });
   

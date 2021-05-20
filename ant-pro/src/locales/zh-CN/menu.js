@@ -7,6 +7,7 @@ export default {
   'menu.order':'运单管理',
   'menu.order.orderlist':'运单列表',
   'menu.order.history':'历史运单',
+  'menu.freightmanagement':'运费设置',
 
 
   'menu.welcome': '欢迎',

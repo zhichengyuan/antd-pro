@@ -6,7 +6,7 @@ export function getAuthority(str) {
     typeof str === 'undefined' && localStorage ? localStorage.getItem('antd-pro-authority') : str; // authorityString could be admin, "admin", ["admin"]
 
   let authority;
-
+  // console.log(authorityString);
   try {
     if (authorityString) {
       authority = JSON.parse(authorityString);
@@ -14,7 +14,7 @@ export function getAuthority(str) {
   } catch (e) {
     authority = authorityString;
   }
-
+  
   if (typeof authority === 'string') {
     return [authority];
   } // preview.pro.ant.design only do not use in your production.
@@ -22,9 +22,10 @@ export function getAuthority(str) {
   // console.log("authority",authority)
   // console.log(ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION)
   if (!authority && ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site') {
+    // console.log('1212')
     return ['admin'];
   }
-
+  // console.log(authority);
   return authority;
 }
 export function setAuthority(authority) {

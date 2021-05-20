@@ -14,7 +14,8 @@ const staffModel = {
             datas:[]//学生数据
         },
         staffForm:{
-            isShow:false
+            isShow:false,
+            editObj:''
         }
         
     },
@@ -54,7 +55,8 @@ const staffModel = {
                 ...state,
                 staffForm:{
                     ...state.staffForm,
-                    isShow:payload
+                    isShow:payload.isShow,
+                    editObj:payload.editObj
                 }
             }
         },

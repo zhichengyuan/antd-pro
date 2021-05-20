@@ -10,10 +10,25 @@ export async function queryNotices() {
 }
 
 export async function queryUserList(data) {
-  console.log(data);
   return await request('/server/user/list',{
-    method: 'POST',
-    data
-})
+      method: 'POST',
+      data
+  })
  
 }
+export async function saveUser(data) {
+  console.log(data);
+  return await request('/server/user/save',{
+      method: 'POST',
+      data
+  })
+}
+
+// // 保存用户
+// export function save(data) {
+//   return request({
+//       url: '/user/save',
+//       method: 'post',
+//       data
+//   })
+// }

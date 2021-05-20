@@ -104,6 +104,13 @@ export default defineConfig({
                   },
                 ]
             },
+            {
+                path: '/home/freightmanagement',
+                icon: 'dashboard',
+                name:'freightmanagement',
+                component: './freightmanagement',
+                // component: '../layouts/Test',
+            },
           ]
         },
         {
@@ -121,7 +128,7 @@ export default defineConfig({
               name:'new',
               icon: 'dashboard',
               component: './home',
-              authority: ['admin','user'],
+              authority: ['admin'],
             },
             {
               path: '/dashboard',
@@ -174,6 +181,7 @@ export default defineConfig({
                   name:'new1',
                   icon: 'smile',
                   component: './home',
+                  
                   // hideInBreadcrumb:true,
                 },
                 {
